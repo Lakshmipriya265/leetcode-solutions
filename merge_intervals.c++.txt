@@ -1,0 +1,21 @@
+class Solution {
+public:
+       vector<vector<int>>merge(vector<vector<int>>& intervals) {
+         vector<vector<int>> res;
+         sort(intervals.begin(), intervals.end());
+        int currIdx = -1;
+        for(auto interval: intervals)
+        {
+            if(res.empty()  || interval[0] > res[currIdx][1])
+            {
+                res.push_back(interval);
+                ++currIdx;
+            }
+            else
+            {
+                res[currIdx][1] = max(res[currIdx][1], interval[1]);
+            }
+        }
+        return res;
+    }
+};
